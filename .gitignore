@@ -1,0 +1,4 @@
+.*
+!.sfn
+!.gitignore
+Gemfile.lock

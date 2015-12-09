@@ -1,0 +1,17 @@
+Configuration.new do
+  processing true
+  options do
+    on_failure 'nothing'
+    capabilities ['CAPABILITY_IAM']
+    tags do
+      creator ENV['USER']
+    end
+  end
+  credentials do
+    provider :aws
+    aws_access_key_id ENV['AWS_ACCESS_KEY_ID']
+    aws_secret_access_key ENV['AWS_SECRET_ACCESS_KEY']
+    aws_region ENV['AWS_REGION']
+    aws_bucket_region ENV['AWS_REGION']
+  end
+end
