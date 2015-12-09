@@ -17,6 +17,15 @@ SparkleFormation.dynamic(:node) do |n_name, n_config|
       image_id ref!("#{n_name}_ami_id".to_sym)
       key_name ref!("#{n_name}_key_name".to_sym)
       instance_type ref!("#{n_name}_instance_size".to_sym)
+      if(n_config[:vpc])
+        network_interfaces array!(
+          -> {
+            device_index 0
+            associate_public_ip_address 'true'
+            subnet_id select!(0, ref!(:networking_subnet_ids))
+          }
+        )
+      end
     end
   end
 
